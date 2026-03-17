@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+ultralytics
+opencv-python-headless
+pytesseract
+pillow
+numpy
+beautifulsoup4
+python-multipart
+pydantic-settings

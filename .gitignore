@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+
+# AI Models (Do not push heavy models to GitHub)
+models/yolo/*.pt
+
+/Source
+
+/.vscode
