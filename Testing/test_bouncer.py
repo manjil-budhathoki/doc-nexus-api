@@ -24,5 +24,5 @@ def test_bouncer(image_path):
 
 if __name__ == "__main__":
     # Test with a Demat image first
-    test_bouncer("Testing/random.jpeg")
-    test_bouncer("Testing/demat_sample.jpg")
+    test_bouncer("Source/random.jpeg")
+    test_bouncer("Source/demat_sample.jpg")
