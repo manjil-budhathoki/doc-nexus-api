@@ -1,34 +1,34 @@
 import logging
-from src.ml.bouncer import DocumentBouncer
+from src.ml.doc_router import DocumentBouncer
 from src.processors.registry import get_processor
 
-logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-
 bouncer = DocumentBouncer()
 
 def run_verification_pipeline(image, user_data):
     logger.info("Pipeline started.")
     
-    # 1. Route
     doc_type = bouncer.get_document_type(image)
     logger.info(f"Detected document type: {doc_type}")
     
     if not doc_type:
-        logger.error("Bouncer failed to detect document type.")
         return {"error": "Document type not identified"}
 
-    # 2. Processor
     processor = get_processor(doc_type)
     if not processor:
-        logger.error(f"No processor registered for: {doc_type}")
-        return {"error": "Processor not found"}
+        return {"error": f"Processor for {doc_type} not found"}
     
-    # 3. Process
     try:
+        # We use 'extraction' as the key name
         extracted = processor.extract_and_verify(image, [], user_data)
         report = processor.validate(extracted, user_data)
-        return {"status": "success", "data": extracted, "report": report}
+        
+        return {
+            "status": "success",
+            "document_type": doc_type,
+            "extraction": extracted,  # <--- CRITICAL KEY NAME
+            "verification": report
+        }
     except Exception as e:
-        logger.exception("Pipeline failed during extraction/validation.")
+        logger.exception("Pipeline failed:")
         return {"error": str(e)}

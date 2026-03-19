@@ -10,3 +10,7 @@ models/yolo/*.pt
 /Source
 
 /.vscode
+
+/Testing/benchmarks
+/Testing/debug
+/Testing/results

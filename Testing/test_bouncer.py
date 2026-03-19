@@ -1,5 +1,5 @@
 import cv2
-from src.ml.bouncer import DocumentBouncer
+from ml.doc_router import DocumentBouncer
 
 def test_bouncer(image_path):
     # 1. Initialize Bouncer

@@ -8,3 +8,7 @@ numpy
 beautifulsoup4
 python-multipart
 pydantic-settings
+nepali-datetime
+paddlepaddle
+paddleocr
+opencv-python-headless<4.10
